@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Entradas</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffdead;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #f08080;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            color: #000; /* Color de letras cambiado a negro */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000; /* Color de letras cambiado a negro */
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid #f08080;
+            border-radius: 5px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50; /* Fondo verde */
+            color: #fff; /* Letras blancas */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .intro {
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #000; /* Color de letras cambiado a negro */
+            position: relative;
+        }
+        .balloons {
+            position: absolute;
+            right: 20px;
+            top: 65px;
+            width: 60px; /* Ajusta el ancho */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+        .balloons img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="intro">
+            <p>¡Buenas! Se viene una nueva propuesta para pasar un buen momento de buena música. Cena + show, animación, entretenimiento, juegos multimedia, karaoke y tanda de baile. El show incluye un artista (tributo) según el día que se realice en la fecha y lugar del evento.</p>
+            <div class="balloons">
+                <img src="https://i.pinimg.com/originals/a5/20/f7/a520f7769b911de4e2bc757ec307e5a4.png" alt="Globos de cumpleaños">
+            </div>
+        </div>
+        <h2>Compra tu Entrada</h2>
+        <form action="https://www.example.com/pagar" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad de Entradas</label>
+                <select id="cantidad" name="cantidad" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tarjeta">Número de Tarjeta de Crédito</label>
+                <input type="text" id="tarjeta" name="tarjeta" required>
+            </div>
+            <div class="form-group">
+                <label for="expiracion">Fecha de Expiración</label>
+                <input type="month" id="expiracion" name="expiracion" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Comprar Entrada</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
