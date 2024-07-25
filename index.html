@@ -6,24 +6,35 @@
     <title>Compra de Entradas</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #ffdead;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             max-width: 600px;
-            margin: 50px auto;
+            margin: 20px;
             padding: 20px;
-            background-color: #fff;
-            border: 2px solid #f08080;
+            background-color: #ffffff;
+            border: 2px solid #007bb5;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        .container.active {
+            opacity: 1;
+            transform: translateX(0);
         }
         h2 {
             text-align: center;
-            color: #000; /* Color de letras cambiado a negro */
+            color: #007bb5;
         }
         .form-group {
             margin-bottom: 15px;
@@ -31,50 +42,117 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #000; /* Color de letras cambiado a negro */
+            color: #007bb5;
         }
         .form-group input,
         .form-group select {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            border: 2px solid #f08080;
+            border: 2px solid #007bb5;
             border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #005f8b;
         }
         .form-group button {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50; /* Fondo verde */
-            color: #fff; /* Letras blancas */
+            background-color: #007bb5;
+            color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .form-group button:hover {
-            background-color: #45a049;
+            background-color: #005f8b;
         }
         .intro {
             margin-bottom: 20px;
             text-align: justify;
-            color: #000; /* Color de letras cambiado a negro */
-            position: relative;
+            color: #007bb5;
         }
         .balloons {
             position: absolute;
             right: 20px;
-            top: 65px;
-            width: 60px; /* Ajusta el ancho */
-            height: auto; /* Mantiene la proporción de la imagen */
+            top: 10px;
+            width: 60px;
+            height: auto;
         }
         .balloons img {
             width: 100%;
-            height: auto; /* Mantiene la proporción de la imagen */
+            height: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bb5;
+        }
+        .pre-screen, .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #007bb5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 24px;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+        .loading-screen {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .dots {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .dots span {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+        .dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .pre-screen button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #005f8b;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .pre-screen button:hover {
+            background-color: #004d70;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="pre-screen" id="preScreen">
+        <button onclick="startLoading()">Iniciar método de pago</button>
+    </div>
+    <div class="loading-screen" id="loadingScreen">
+        Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+    </div>
+    <div class="container" id="mainContent">
         <div class="intro">
             <p>¡Buenas! Se viene una nueva propuesta para pasar un buen momento de buena música. Cena + show, animación, entretenimiento, juegos multimedia, karaoke y tanda de baile. El show incluye un artista (tributo) según el día que se realice en la fecha y lugar del evento.</p>
             <div class="balloons">
@@ -117,6 +195,21 @@
                 <button type="submit">Comprar Entrada</button>
             </div>
         </form>
+        <div class="footer">
+            <p>Gracias por tu compra. ¡Te esperamos en el evento!</p>
+        </div>
     </div>
+    <script>
+        function startLoading() {
+            document.getElementById('preScreen').style.opacity = '0';
+            document.getElementById('loadingScreen').style.opacity = '1';
+            setTimeout(showMainContent, 2000);
+        }
+
+        function showMainContent() {
+            document.getElementById('loadingScreen').style.opacity = '0';
+            document.getElementById('mainContent').classList.add('active');
+        }
+    </script>
 </body>
 </html>
